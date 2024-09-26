@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0wht7mgpiouv"]
+[gd_scene load_steps=7 format=3 uid="uid://b0wht7mgpiouv"]
 
 [ext_resource type="Script" path="res://Scenes/nave_movemment.gd" id="1_kpkle"]
 [ext_resource type="Texture2D" uid="uid://bffsnanocbabr" path="res://Assets/Sprites/nave.png" id="2_fy7wm"]
 [ext_resource type="PackedScene" uid="uid://b8rrff732sjo8" path="res://Scenes/ScreenBoundsMovement.tscn" id="3_y2jos"]
 [ext_resource type="Script" path="res://Scenes/player_shoot.gd" id="4_4ylix"]
 [ext_resource type="PackedScene" uid="uid://ddrixaruq4qhp" path="res://Scenes/bullet.tscn" id="5_65ors"]
+[ext_resource type="AudioStream" uid="uid://bs2uodcsg8ii2" path="res://Assets/Sounds/shot-from-a-space-weapon.mp3" id="6_p144l"]
 
 [node name="Nave" type="CharacterBody2D"]
 collision_mask = 16
@@ -25,3 +26,6 @@ node = NodePath("..")
 position = Vector2(0, 145)
 script = ExtResource("4_4ylix")
 bullet_scene = ExtResource("5_65ors")
+
+[node name="ShootAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_p144l")

@@ -1,8 +1,10 @@
 extends Node
 
 class_name AsteroidsSpawner
+
 @export var asteroid_scne: PackedScene
 @export var count=6
+@onready var explosion_audio_player: AudioStreamPlayer2D= $"../ExplosionAudioPlayer"
 const Utils= preload("res://Scenes/Utils/utils.gd")
 func _ready():
 	for i in range(count):
@@ -31,3 +33,10 @@ func spawn_asteroid(size: Utils.AsteroidSize, position: Vector2):
 	get_tree().root.add_child.call_deferred(asteroid)
 	asteroid.global_position=position
 	asteroid.size= size
+	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
+
+func asteroid_destroyed(size:int, position:Vector2):
+	explosion_audio_player.play()
+	if(size < 2):
+		for i in range(2):
+			spawn_asteroid(size, position)

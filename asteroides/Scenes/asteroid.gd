@@ -1,6 +1,6 @@
 extends Area2D
 class_name Asteroid
-
+signal on_asteroid_destroyed(size: AsteroidSize, position: Vector2)
 var image_array=["res://Assets/Sprites/ateroide1.png", "res://Assets/Sprites/asteroide2.png","res://Assets/Sprites/asteroide3.png","res://Assets/Sprites/asteroide4.png"]
 const Utils=preload("res://Scenes/Utils/utils.gd")
 @export var speed=100
@@ -8,6 +8,7 @@ var direction:Vector2
 var size=Utils.AsteroidSize.BIG
 @onready var sprite= $Sprite2D
 @onready var explosion_particles=$ExplosionParticles
+
 
 func _ready() -> void:
 	var scaleValue=1/(size+1.0)
@@ -34,3 +35,11 @@ func emit_explosion():
 func on_destroy():
 	emit_explosion()
 	queue_free()
+	var new_asteroids_size=size+1
+	on_asteroid_destroyed.emit(new_asteroids_size, global_position)
+
+
+func _on_area_entered(area:):
+	if area is Bullet:
+		area.queue_free()
+		on_destroy()
