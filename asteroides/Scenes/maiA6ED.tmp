@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://gbvfshownqlb"]
+[gd_scene load_steps=2 format=3 uid="uid://gbvfshownqlb"]
 
 [ext_resource type="PackedScene" uid="uid://b0wht7mgpiouv" path="res://Scenes/nave.tscn" id="1_pvdxi"]
-[ext_resource type="PackedScene" uid="uid://dxs8pel1b2l1a" path="res://Scenes/asteroids_spawner.tscn" id="2_oc7d0"]
 
 [node name="Main" type="Node2D"]
 
@@ -9,5 +8,3 @@
 zoom = Vector2(0.5, 0.5)
 
 [node name="Nave" parent="." instance=ExtResource("1_pvdxi")]
-
-[node name="AsteroidsSpawner" parent="." instance=ExtResource("2_oc7d0")]

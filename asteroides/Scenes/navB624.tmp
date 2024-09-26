@@ -1,14 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0wht7mgpiouv"]
 
-[ext_resource type="Script" path="res://nave_movement.gd" id="1_u25ma"]
 [ext_resource type="Texture2D" uid="uid://bffsnanocbabr" path="res://Assets/Sprites/nave.png" id="2_fy7wm"]
 
+[sub_resource type="GDScript" id="GDScript_sq7r3"]
+
 [node name="Nave" type="CharacterBody2D"]
-script = ExtResource("1_u25ma")
-max_speed = null
-rotation_speed = null
-velocity_damping_factor = null
-linear_verlocity = null
+script = SubResource("GDScript_sq7r3")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = 3.14159

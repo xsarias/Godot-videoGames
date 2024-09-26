@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxriiua3nynll"
-path="res://.godot/imported/ateroide.png-9acb04edc0092b51a993f151df38d48f.ctex"
+uid="uid://cf8y48fxpurg5"
+path="res://.godot/imported/bullet.png-01b797d76f64f0a3fea939dd04a7ef5b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/ateroide.png"
-dest_files=["res://.godot/imported/ateroide.png-9acb04edc0092b51a993f151df38d48f.ctex"]
+source_file="res://Assets/Sprites/bullet.png"
+dest_files=["res://.godot/imported/bullet.png-01b797d76f64f0a3fea939dd04a7ef5b.ctex"]
 
 [params]
 

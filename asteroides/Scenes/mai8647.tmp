@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://gbvfshownqlb"]
+
+[ext_resource type="PackedScene" uid="uid://b0wht7mgpiouv" path="res://nave.tscn" id="1_pvdxi"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Nave" parent="." instance=ExtResource("1_pvdxi")]
+max_speed = 10
+rotation_speed = 3.5
+velocity_damping_factor = 0.5
