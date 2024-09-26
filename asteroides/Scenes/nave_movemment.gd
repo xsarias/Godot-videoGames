@@ -1,43 +1,26 @@
 extends CharacterBody2D
 
 class_name Nave
-@export var max_speed=10
-@export var rotation_speed=3.5
-@export var velocity_damping_factor= .5
-@export var lineal_velocity=200
+@export var max_speed = 400 
+@export var velocity_damping_factor = 0.5  
 
-var input_vector: Vector2
-
-# -1, 0, 1
-var rotation_direction:int
+var ship_velocity: Vector2 = Vector2.ZERO 
 
 func _process(delta):
-	input_vector.x=Input.get_action_strength("rotate_left") - Input.get_action_strength("rotate_right")
-	input_vector.y=Input.get_action_strength("thrust")
-	if Input.is_action_pressed("rotate_left"):
-		rotation_direction=-1
-	elif Input.is_action_pressed("rotate_right"):
-		rotation_direction=1
-	else:
-		rotation_direction=0
+	get_input()
+	rotate_towards_mouse()  
 
 func _physics_process(delta):
-	rotation+=rotation_direction * rotation_speed * delta
-	if(input_vector.y > 0):
-		accelerate_forward(delta)
-	elif input_vector.y == 0 && velocity!= Vector2.ZERO:
-		slow_down_and_stop(delta)
-	move_and_collide(velocity*delta)
-	#rotation = get_global_mouse_position().angle_to_point(position)
+	var collision = move_and_collide(ship_velocity * delta)
+func get_input():
+	var input_direction = Vector2(
+		Input.get_action_strength("right") - Input.get_action_strength("left"),
+		Input.get_action_strength("up") - Input.get_action_strength("down")
+	)
+	ship_velocity = input_direction * max_speed
 	
-func accelerate_forward(delta:float):
-	velocity+=(input_vector * lineal_velocity *delta).rotated(rotation)
-	velocity.limit_length(max_speed)
-	
-func slow_down_and_stop(delta: float):
-	velocity = lerp(velocity, Vector2.ZERO, velocity_damping_factor * delta)
+	if input_direction == Vector2.ZERO:
+		ship_velocity = ship_velocity.lerp(Vector2.ZERO, velocity_damping_factor * get_process_delta_time())
 
-	#stop 
-	if velocity.y >= -0.1 && velocity.y <= 0.1:
-		velocity.y=0
-	
+func rotate_towards_mouse():
+	look_at(get_global_mouse_position())

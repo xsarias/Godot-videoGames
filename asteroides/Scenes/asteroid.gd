@@ -1,6 +1,8 @@
 extends Area2D
 class_name Asteroid
 signal on_asteroid_destroyed(size: AsteroidSize, position: Vector2)
+signal on_nave_destroyed
+
 var image_array=["res://Assets/Sprites/ateroide1.png", "res://Assets/Sprites/asteroide2.png","res://Assets/Sprites/asteroide3.png","res://Assets/Sprites/asteroide4.png"]
 const Utils=preload("res://Scenes/Utils/utils.gd")
 @export var speed=100
@@ -26,6 +28,7 @@ func _process(delta):
 func _on_body_entered(body: Node2D) -> void:
 	if body is Nave:
 		body.queue_free()
+		on_nave_destroyed.emit()
 		on_destroy()
 
 func emit_explosion():
