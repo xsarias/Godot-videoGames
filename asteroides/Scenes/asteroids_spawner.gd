@@ -34,7 +34,8 @@ func spawn_asteroid(size: Utils.AsteroidSize, position: Vector2):
 	asteroid.global_position=position
 	asteroid.size= size
 	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
-
+	asteroid.on_nave_destroyed.connect(get_node("../GameOverScreen")._on_nave_destroyed)
+	
 func asteroid_destroyed(size:int, position:Vector2):
 	explosion_audio_player.play()
 	if(size < 2):

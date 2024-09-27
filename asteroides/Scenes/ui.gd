@@ -1,12 +1,27 @@
 extends CanvasLayer
 
-@onready var game_over_label: Label = $"GameOverLabel"  # Asegúrate de que la ruta sea correcta
-@onready var asteroid_spawner: AsteroidsSpawner = $"AsteroidsSpawner"  # Ajusta la ruta según tu escena
+@onready var game_over_screen: PanelContainer = $PanelContainer
+@onready var timer: Timer = Timer.new()  # Crear un nuevo Timer
 
 func _ready() -> void:
-	pass
+	game_over_screen.visible = false  # Ocultar el letrero al inicio
+	self.visible = false  # Ocultar el CanvasLayer completo al inicio
 	
+	timer.wait_time = 2.0  # Esperar 3 segundos
+	timer.one_shot = true  # Solo se ejecuta una vez
+	timer.connect("timeout", Callable(self, "_on_timer_timeout"))
+	add_child(timer)  # Agregar el Timer al CanvasLayer
 
 func _on_nave_destroyed() -> void:
-	# Esta función se llama cuando la nave es destruida
-	game_over_label.visible = true  # Mostrar el letrero de "Game Over"
+	print("destruido")
+	timer.start()  # Iniciar el temporizador
+
+func _on_timer_timeout() -> void:
+	self.visible = true
+	game_over_screen.visible = true  # Mostrar el Game Over Screen
+
+func _on_button_pressed() -> void:
+	get_tree().quit()
+
+func _on_button_2_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Main.tscn")

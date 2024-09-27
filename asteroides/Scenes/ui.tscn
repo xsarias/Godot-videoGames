@@ -1,31 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcvx5c6ndjkg0"]
+[gd_scene load_steps=6 format=3 uid="uid://dcvx5c6ndjkg0"]
 
 [ext_resource type="Script" path="res://Scenes/ui.gd" id="1_er4wd"]
 [ext_resource type="FontFile" uid="uid://dpjovjmjyrbuy" path="res://Assets/Fonts/Arcade.ttf" id="2_y1jnw"]
+[ext_resource type="FontFile" uid="uid://x64yx7xq1mvp" path="res://Assets/Fonts/KarmaFuture.ttf" id="3_eobwo"]
 
-[node name="UI" type="CanvasLayer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55bhv"]
+
+[sub_resource type="Theme" id="Theme_27tkv"]
+
+[node name="GameOverScreen" type="CanvasLayer"]
 script = ExtResource("1_er4wd")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
+[node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(0.697803, 0.49505, 0.994906, 1)
+self_modulate = Color(0.0181251, 0.173774, 0.256623, 1)
+show_behind_parent = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_55bhv")
 
-[node name="BoxContainer" type="BoxContainer" parent="MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
+theme = SubResource("Theme_27tkv")
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+[node name="Rows" type="VBoxContainer" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+theme_override_constants/separation = 20
 
-[node name="GameOverLabel" type="Label" parent="MarginContainer/CenterContainer"]
-unique_name_in_owner = true
-visible = false
+[node name="Title" type="Label" parent="PanelContainer/MarginContainer/Rows"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.821911, 1.85303e-06, 7.70092e-07, 1)
+theme_override_colors/font_color = Color(1, 0.3, 0.3, 1)
 theme_override_fonts/font = ExtResource("2_y1jnw")
-theme_override_font_sizes/font_size = 100
-text = "GAME OVER"
+theme_override_font_sizes/font_size = 160
+text = "GAME OVER "
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer/MarginContainer/Rows"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer/Rows/CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_eobwo")
+theme_override_font_sizes/font_size = 80
+text = " QUIT "
+
+[node name="Button2" type="Button" parent="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_eobwo")
+theme_override_font_sizes/font_size = 80
+text = "  RESTART  "
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PanelContainer/MarginContainer/Rows/CenterContainer/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
