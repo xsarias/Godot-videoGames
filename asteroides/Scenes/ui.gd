@@ -4,8 +4,8 @@ extends CanvasLayer
 @onready var timer: Timer = Timer.new()  # Crear un nuevo Timer
 
 func _ready() -> void:
-	game_over_screen.visible = false  # Ocultar el letrero al inicio
-	self.visible = false  # Ocultar el CanvasLayer completo al inicio
+	game_over_screen.visible = false 
+	self.visible = false 
 	
 	timer.wait_time = 2.0  # Esperar 3 segundos
 	timer.one_shot = true  # Solo se ejecuta una vez
@@ -18,7 +18,7 @@ func _on_nave_destroyed() -> void:
 
 func _on_timer_timeout() -> void:
 	self.visible = true
-	game_over_screen.visible = true  # Mostrar el Game Over Screen
+	game_over_screen.visible = true 
 
 func _on_button_pressed() -> void:
 	get_tree().quit()

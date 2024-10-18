@@ -34,7 +34,6 @@ func _on_body_entered(body: Node2D) -> void:
 		on_destroy()
 		emit_signal("on_nave_destroyed") 
 
-	
 
 func emit_explosion():
 	explosion_particles.emitting = true
