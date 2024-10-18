@@ -1,0 +1,55 @@
+[gd_scene load_steps=9 format=3 uid="uid://c45k04o1nohct"]
+
+[ext_resource type="Shader" path="res://floor.gdshader" id="1_bi6r6"]
+[ext_resource type="PackedScene" uid="uid://b0bcacbhvcf4n" path="res://character/leopoldo.tscn" id="2_koec2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cp4ix"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_5mxkg"]
+sky_material = SubResource("ProceduralSkyMaterial_cp4ix")
+
+[sub_resource type="Environment" id="Environment_708di"]
+background_mode = 2
+sky = SubResource("Sky_5mxkg")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yt71f"]
+render_priority = 0
+shader = ExtResource("1_bi6r6")
+shader_parameter/base_color = Color(0.338947, 0.620977, 0.252203, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0403k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc33f"]
+size = Vector3(1, 1.12097, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0.340867, -0.145497, 0.928784, -0.365804, 0.889566, 0.273605, 0, 6.31237, 1.72782)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_708di")
+
+[node name="GridMap" type="GridMap" parent="."]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(10.9236, 0, 0, 0, 1, 0, 0, 0, 11.2344, 0, 0, 0)
+material_override = SubResource("ShaderMaterial_yt71f")
+mesh = SubResource("BoxMesh_0403k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(10.628, 0, 0, 0, 0.976988, 0, 0, 0, 10.9986, 0, 0.0604858, 0)
+shape = SubResource("BoxShape3D_xc33f")
+
+[node name="leopoldo" parent="." instance=ExtResource("2_koec2")]
+transform = Transform3D(1.21746, 0, 0, 0, 1.27005, 0, 0, 0, 1.21746, 0, 1.86789, 0.707856)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.995849, 0.091015, 0, -0.091015, 0.995849, 0, 2.07302, 4.51289)
