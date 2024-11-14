@@ -3,7 +3,6 @@ extends CharacterBody2D
 class_name Nave
 @export var max_speed = 400 
 @export var velocity_damping_factor = 0.5  
-
 var ship_velocity: Vector2 = Vector2.ZERO 
 
 func _process(delta):

@@ -1,15 +1,19 @@
 extends Node
 
 class_name AsteroidsSpawner
-
+#@onready var restar: CanvasLayer = %GameOverScreen
 @export var asteroid_scne: PackedScene
 @export var count=6
 @onready var explosion_audio_player: AudioStreamPlayer2D= $"../ExplosionAudioPlayer"
 const Utils= preload("res://Scenes/Utils/utils.gd")
+var asteroids = []
 func _ready():
 	for i in range(count):
 		var random_spawn_position= get_random_position_from_screen_rect()
 		spawn_asteroid(Utils.AsteroidSize.BIG, random_spawn_position)
+		#restar.connect("restar", Callable(self, "_on_restar"))
+
+
 		
 func get_random_position_from_screen_rect()->Vector2:
 	var rect=get_viewport().get_visible_rect()
@@ -34,7 +38,8 @@ func spawn_asteroid(size: Utils.AsteroidSize, position: Vector2):
 	asteroid.global_position=position
 	asteroid.size= size
 	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
-	asteroid.on_nave_destroyed.connect(get_node("../GameOverScreen")._on_nave_destroyed)
+	asteroid.on_nave_destroyed.connect(get_node("../Camera2D/Control")._on_nave_destroyed)
+	asteroids.append(asteroid)
 	
 func asteroid_destroyed(size:int, position:Vector2):
 	explosion_audio_player.play()

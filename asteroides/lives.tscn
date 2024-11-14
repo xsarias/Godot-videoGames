@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cosu2t1kyo5h1"]
+
+[ext_resource type="Script" path="res://lives.gd" id="1_nrkre"]
+[ext_resource type="FontFile" uid="uid://dpjovjmjyrbuy" path="res://Assets/Fonts/Arcade.ttf" id="1_vaeow"]
+[ext_resource type="Resource" uid="uid://cfkgdivik24cr" path="res://Scripts/GameModifiers.tres" id="2_5p03p"]
+[ext_resource type="PackedScene" uid="uid://b0wht7mgpiouv" path="res://Scenes/nave.tscn" id="2_734rh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nrkre")
+game_modifiers = ExtResource("2_5p03p")
+nave_scne = ExtResource("2_734rh")
+
+[node name="lives_label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 195.0
+offset_top = 593.0
+offset_right = 235.0
+offset_bottom = 643.0
+theme_override_fonts/font = ExtResource("1_vaeow")
+theme_override_font_sizes/font_size = 50
+text = "5"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 11.0
+offset_top = 592.0
+offset_right = 177.0
+offset_bottom = 642.0
+theme_override_fonts/font = ExtResource("1_vaeow")
+theme_override_font_sizes/font_size = 50
+text = "LIVES :"

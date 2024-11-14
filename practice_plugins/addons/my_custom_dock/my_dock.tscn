@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://brf4d024k5ae4"]
+
+[node name="My Dock" type="Button"]
+offset_right = 362.0
+offset_bottom = 186.0
+text = "CLICK ME :P"

@@ -5,8 +5,8 @@ extends Node3D
 
 func _ready():
 	
-	#move_bone_please("ORG-PISTOL.001") 
-	move_bone_with_tween("ORG-PISTOL.001")
+	move_bone_please("ORG-PISTOL.001") 
+	#move_bone_with_tween("ORG-PISTOL.001")
 		
 func move_bone_please(bone_name:String):
 	var body = skl.find_bone(bone_name)

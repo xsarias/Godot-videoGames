@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://2s3qyppb04qc"]
+
+[ext_resource type="Script" path="res://addons/plugin_modifiers_/modifiers_tool.gd" id="1_qmlsu"]
+[ext_resource type="Resource" uid="uid://cfkgdivik24cr" path="res://Scripts/GameModifiers.tres" id="2_0e8b8"]
+
+[node name="ModifiersTool" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -752.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qmlsu")
+game_modifiers = ExtResource("2_0e8b8")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.2
+anchor_bottom = 0.196
+offset_left = 5.0
+offset_top = 2.0
+offset_right = 36.0
+offset_bottom = -62.808
+text = "Modifiers Tool"
+
+[node name="CheckBox" type="CheckBox" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 24.0
+offset_right = 28.0
+offset_bottom = 48.0
+button_pressed = true
+action_mode = 0
+text = "Show Lives"
+
+[connection signal="pressed" from="CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="toggled" from="CheckBox" to="." method="_on_check_box_toggled"]
